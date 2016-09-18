@@ -123,3 +123,10 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, 'static'),
 )
+
+# debug logging
+import logging
+logging.basicConfig(
+level = logging.DEBUG,
+format ='%(asctime)s %(levelname)s %(message)s',
+)

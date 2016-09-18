@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from django.views import generic
 from django.views.generic.base import ContextMixin
+import logging
 
 from .models import Category, Blog
 
@@ -15,9 +16,7 @@ class BaseMixIn(generic.ListView):
 
 class IndexView(BaseMixIn):
     template_name = 'blog/index.html'
-
-    def get_queryset(self):
-        pass
+    model = Blog
 
     def get_context_data(self, **kwargs):
         context = super(IndexView, self).get_context_data(**kwargs)
@@ -27,9 +26,7 @@ class IndexView(BaseMixIn):
 
 class AllView(BaseMixIn):
     template_name = 'blog/all.html'
-
-    def get_queryset(self):
-        pass
+    model = Blog
 
     def get_context_data(self, **kwargs):
         context = super(AllView, self).get_context_data(**kwargs)
@@ -39,26 +36,24 @@ class AllView(BaseMixIn):
 
 class CategoryView(BaseMixIn):
     template_name = 'blog/all.html'
-
-    def get_queryset(self):
-        pass
+    model = Category
 
     def get_context_data(self, **kwargs):
         context = super(CategoryView, self).get_context_data(**kwargs)
+        logging.debug('categoryView')
         key = self.kwargs.get('category')
         context['bloglists'] = Blog.objects.filter(category__name=key)
         return context
 
 
-class BlogView(BaseMixIn):
+class BlogView(BaseMixIn, generic.DetailView):
     template_name = 'blog/detail.html'
-
-    def get_queryset(self):
-        pass
+    model = Blog
 
     def get_context_data(self, **kwargs):
+        self.object = self.get_object()
         context = super(BlogView, self).get_context_data(**kwargs)
-        blogId = self.kwargs.get('blogId')
-        # context['blog'] = Blog.objects.get(id=blogId)
-        context['error'] = blogId
+        blogId = self.kwargs.get('pk')
+        context['blog'] = Blog.objects.get(id=blogId)
         return context
+

@@ -17,9 +17,12 @@
             {% for blog in bloglists %}
                 <div id="blogIndex">
                     <div id="blogShow" class="well">
+                    {{ error }}
                         <div class="blogTitle">
                             <span class="label label-danger">{{ blog.tags }}</span>
-                            <a href="{% url 'blog:detail' blog.id %}">{{ blog.title }}</a>
+                            <a href="{% url 'blog:detail' blog.id %}">
+                                {{ blog.title }}
+                            </a>
                         </div>
                         <div class="blogContent">
                             <img class="blogImg" src="{% static 'images/ubuntu.jpg' %}">
