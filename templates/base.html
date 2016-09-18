@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    {% load staticfiles %}
+    <title>{% block title %}Index {% endblock %}</title>
+    <script src="//cdn.bootcss.com/jquery/1.11.3/jquery.js"></script>
+    <link type="text/css" rel="stylesheet" href="{% static 'bootstrap/css/bootstrap.min.css' %}">
+    <link type="text/css" rel="stylesheet" href="{% static 'css/hao.css' %}">
+    <script type="text/javascript" src="{% static 'bootstrap/js/bootstrap.min.js' %}"></script>
+</head>
+<body>
+<div class="haoHeader">
+    <div>hao 啦啦啦啦啦啦啦</div>
+</div>
+<!-- navigator start-->
+<nav id="haoNav" class="navbar navbar-default">
+  <div class="container">
+      <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="#">Hao</a>
+    </div>
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav">
+        <li class="active"><a href="{% url 'blog:index' %}">首页 <span class="sr-only">(current)</span></a></li>
+        <li><a href="{% url 'blog:all' %}">全部文章</a></li>
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">技术小报 <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+              {% if categories %}
+                  {% for category in categories %}
+                      <li role="separator" class="divider"></li>
+                      <li><a href="#">{{ category.name }}</a></li>
+                  {% endfor %}
+              {% endif %}
+          </ul>
+        </li>
+      </ul>
+        <ul class="nav navbar-nav navbar-right">
+            <li><a href="#">Sign Up</a></li>
+            <li><a href="#">Sing In</a></li>
+        </ul>
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>
+<!--navigator end-->
+<div id="haoContent" class="container">
+    <div class="row">
+        {% block content %}
+        {% endblock %}
+        <!-- SideBar Start-->
+        <div id="sideBar" class="col-lg-3 col-md-4 hidden-xs">
+            <div class="input-group">
+                <input type="text" class="form-control" placeholder="Search for...">
+                <span class="input-group-btn">
+                    <button class="btn btn-default" type="button">Go!</button>
+                </span>
+            </div><!-- /input-group -->
+            <!--标签云Start-->
+            <div id="tagcloud">
+                <img class="tagcloud" src="{% static 'images/ubuntu2.jpg' %}">
+            </div>
+            <!-- End -->
+        </div><!-- /.col-lg-6 -->
+    </div><!-- /.row -->
+</div>
+</body>
+</html>

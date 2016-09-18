@@ -1,0 +1,63 @@
+{% extends 'base.html' %}
+
+{% load staticfiles %}
+
+{% block content %}
+    <div id="allContent" class="col-lg-9 col-md-8">
+        {% if categories %}
+            <div id="categoryIndex">
+                <div id="categoryShow" class="well">
+                    {% for category in categories %}
+                        <span class="tags"><a href="{% url 'blog:category' category %}">{{ category }}</a> </span>
+                    {% endfor %}
+                </div>
+            </div>
+        {% endif %}
+        {% if bloglists %}
+            {% for blog in bloglists %}
+                <div id="blogIndex">
+                    <div id="blogShow" class="well">
+                        <div class="blogTitle">
+                            <span class="label label-danger">{{ blog.tags }}</span>
+                            <a href="{% url 'blog:detail' blog.id %}">{{ blog.title }}</a>
+                        </div>
+                        <div class="blogContent">
+                            <img class="blogImg" src="{% static 'images/ubuntu.jpg' %}">
+                            <div class="blogText">
+                                <span>{{ blog.summary|slice:'150'|safe }}</span>
+                            </div>
+                        </div>
+                        <div class="blogFooter">
+                            <span class="tags">
+                                <span class="glyphicon glyphicon-comment" aria-hidden="true"></span>
+                                暂无
+                            </span>
+                            <span class="tags">
+                                <span class="glyphicon glyphicon-eye-open" aria-hidden="true">
+                                </span>
+                                浏览人数
+                            </span>
+                            <span class="tags">
+                                <span class="glyphicon glyphicon-calendar" aria-hidden="true">
+                                </span>
+                                {{ blog.create_time }}
+                            </span>
+                            <span class="tags">
+                                <span class="glyphicon glyphicon-user" aria-hidden="true">
+                                </span>
+                                {{ blog.author }}
+                            </span>
+                            {% for tag in blog.get_tags %}
+                                <span class="tags">
+                                    <span class="label label-success">
+                                        {{ tag }}
+                                    </span>
+                                </span>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        {% endif %}
+    </div>
+{% endblock %}
