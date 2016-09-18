@@ -49,7 +49,7 @@
                     <div id="blogShow" class="well">
                         <div class="blogTitle">
                             <span class="label label-danger">{{ blog.tags }}</span>
-                            <span>{{ blog.title }}</span>
+                            <a href="{% url 'blog:detail' blog.id %}"<span>{{ blog.title }}</span></a>
                         </div>
                         <div class="blogContent">
                             <img class="blogImg" src="{% static 'images/ubuntu.jpg' %}">
