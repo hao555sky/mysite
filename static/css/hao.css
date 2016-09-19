@@ -72,3 +72,21 @@
     text-decoration: none;
 }
 
+#blog{
+    padding: 5px;
+}
+
+#blog .title{
+    font-size: large;
+}
+#blog .tags{
+    margin-top: 10px;
+    height:20px;
+}
+#blog .tags .tag{
+    margin-right:20px;
+}
+
+#blog .content{
+    margin-top: 20px;
+}
