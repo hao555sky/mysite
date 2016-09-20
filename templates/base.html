@@ -76,6 +76,14 @@
             <div id="tagcloud">
                 <img class="tagcloud" src="{% static 'images/ubuntu2.jpg' %}">
             </div>
+            <div id="hotblogs">
+                <div>
+                    <span>hot blogs</span>
+                </div>
+                {% for blog in hotblogs %}
+                    {{ blog.title }}
+                {% endfor %}
+            </div>
             <!-- End -->
             <!-- 多说最新评论 start -->
             <!-- 多说最新评论 end -->

@@ -1,3 +1,7 @@
+.hao{
+    background-color: #555555;
+    font:12px white;
+}
 .haoHeader{
     background-color: cadetblue;
     padding-top:15px;
@@ -89,4 +93,9 @@
 
 #blog .content{
     margin-top: 20px;
+}
+
+#hotblogs{
+    background-color: #245269;
+    font-style: italic;
 }

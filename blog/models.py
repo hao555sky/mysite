@@ -23,6 +23,7 @@ class Blog(models.Model):
     tags = models.CharField(max_length=200, default="未分类")
     img = models.ImageField(default="")
     create_time = models.DateField(default="2012-01-01")
+    views = models.IntegerField(default=0, verbose_name='people who views')
 
     def __str__(self):
         return self.title
