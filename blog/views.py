@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.core.urlresolvers import reverse
 from django.views import generic
 from django.views.generic.base import ContextMixin
 import logging
@@ -53,7 +53,11 @@ class BlogView(BaseMixIn, generic.DetailView):
     def get_context_data(self, **kwargs):
         self.object = self.get_object()
         context = super(BlogView, self).get_context_data(**kwargs)
-        blogId = self.kwargs.get('pk')
-        context['blog'] = Blog.objects.get(id=blogId)
+        self.blogId = self.kwargs.get('pk')
+        context['blog'] = Blog.objects.get(id=self.blogId)
         return context
+
+    def get_absolute_url(self):
+        logging.debug('get_absolute_url', self.blogId)
+        return reverse('views.BlogView.as_view', args=[self.blogId])
 

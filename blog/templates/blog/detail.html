@@ -3,14 +3,16 @@
 {% load staticfiles %}
 
 {% block content %}
-    <div id="blog" class="col-lg-9 col-md-8">
+    <div id="detail" class="col-lg-9 col-md-8">
+    {% if blog %}
         <!-- the location-->
         <ol class="breadcrumb">
             <li><a href="#">Home</a></li>
             <li><a href="#">Library</a></li>
             <li class="active">Data</li>
         </ol>
-        <div class="well">
+        <div id="blog" class="well">
+        <div>{{ blog.get_absolute_url }}</div>
             <div class="title">
                 <span>{{ blog.title }}</span>
             </div>
@@ -43,5 +45,12 @@
                 {{ blog.content|safe }}
             </div>
         </div>
+        <!-- 多说评论框 start -->
+        <!-- 多说评论框 end -->
+        <!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+        <div class="ds-thread" data-thread-key="{{ blog.id }}" data-title="{{ blog.title }}" data-url="{{ blog.get_absolute_url }}"></div>
+        <script type="text/javascript" src="/static/js/duoshuo_comments.js"></script>
+        <!-- 多说公共JS代码 end -->
+    {% endif %}
     </div>
 {% endblock %}
