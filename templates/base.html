@@ -53,6 +53,15 @@
 <!--navigator end-->
 <div id="haoContent" class="container">
     <div class="row">
+    <!-- the location-->
+        <ol class="breadcrumb">
+{#            {% for location in object.get_absolute_url %}#}
+{#                <li><a href="#">{{ location }}</a></li>#}
+{#            {% endfor %}#}
+            <li><a href="#">Home /</li>
+            <li><a href="{{ object.get_absolute_url }}">{{ object.title }}</a></li>
+
+        </ol>
         {% block content %}
         {% endblock %}
         <!-- SideBar Start-->

@@ -1,5 +1,5 @@
 from django.db import models
-
+from django.core.urlresolvers import reverse
 
 # Create your models here.
 class Category(models.Model):
@@ -9,6 +9,9 @@ class Category(models.Model):
 
     def __str__(self):
         return self.name
+
+    def get_absolute_url(self):
+        return reverse('blog:category', args=[self.name])
 
 
 class Blog(models.Model):
@@ -27,4 +30,7 @@ class Blog(models.Model):
     def get_tags(self):
         tagslist = self.tags.split(',')
         return tagslist
+
+    def get_absolute_url(self):
+        return reverse('blog:detail', args=[self.id])
 
