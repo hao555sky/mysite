@@ -1,7 +1,4 @@
-.hao{
-    background-color: #555555;
-    font:12px white;
-}
+
 .haoHeader{
     background-color: cadetblue;
     padding-top:15px;
@@ -96,6 +93,26 @@
 }
 
 #hotblogs{
-    background-color: #245269;
-    font-style: italic;
+    font-family:"Trebuchet MS", Arial, Helvetica, sans-serif;
+    width:100%;
+    border-collapse:collapse;
+}
+
+#hotblogs td, #hotblogs th{
+    font-size:1em;
+    border:1px solid white;
+    padding:10px 7px;
+}
+
+#hotblogs th {
+    font-size:1.1em;
+    text-align:left;
+    padding-top:5px;
+    padding-bottom:4px;
+    background-color:silver;
+    color:#ffffff;
+}
+
+#tags{
+    float: right;
 }

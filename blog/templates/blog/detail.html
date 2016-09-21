@@ -5,7 +5,13 @@
 {% block content %}
     <div id="detail" class="col-lg-9 col-md-8">
     {% if blog %}
+        <!-- the location-->
+            <ol class="breadcrumb">
+                <li><a href="#">Home /</li>
+                <li><a href="{{ object.get_absolute_url }}">{{ object.title }}</a></li>
+            </ol>
         <div id="blog" class="well">
+
             <div class="title">
                 <span>{{ blog.title }}</span>
             </div>

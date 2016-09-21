@@ -9,7 +9,7 @@
     <link type="text/css" rel="stylesheet" href="{% static 'css/hao.css' %}">
     <script type="text/javascript" src="{% static 'bootstrap/js/bootstrap.min.js' %}"></script>
 </head>
-<body>
+<body class="hao">
 <div class="haoHeader">
     <div>hao 啦啦啦啦啦啦啦</div>
 </div>
@@ -53,15 +53,6 @@
 <!--navigator end-->
 <div id="haoContent" class="container">
     <div class="row">
-    <!-- the location-->
-        <ol class="breadcrumb">
-{#            {% for location in object.get_absolute_url %}#}
-{#                <li><a href="#">{{ location }}</a></li>#}
-{#            {% endfor %}#}
-            <li><a href="#">Home /</li>
-            <li><a href="{{ object.get_absolute_url }}">{{ object.title }}</a></li>
-
-        </ol>
         {% block content %}
         {% endblock %}
         <!-- SideBar Start-->
@@ -76,14 +67,18 @@
             <div id="tagcloud">
                 <img class="tagcloud" src="{% static 'images/ubuntu2.jpg' %}">
             </div>
-            <div id="hotblogs">
-                <div>
-                    <span>hot blogs</span>
-                </div>
+            <table id="hotblogs" class="well">
+                <tr><th>hot blogs</th></tr>
                 {% for blog in hotblogs %}
-                    {{ blog.title }}
+                    <tr><td>
+                        <a href="{% url 'blog:detail' blog.id %}"> {{ blog.title|slice:'10'}}</a>
+                        <span id="tags">
+                            <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>
+                                {{ blog.views }}
+                            </span>
+                    </td></tr>
                 {% endfor %}
-            </div>
+            </table>
             <!-- End -->
             <!-- 多说最新评论 start -->
             <!-- 多说最新评论 end -->

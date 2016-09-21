@@ -11,7 +11,7 @@ class BaseMixIn(generic.ListView):
     def get_context_data(self, **kwargs):
         context = super(BaseMixIn, self).get_context_data(**kwargs)
         context['categories'] = Category.objects.all()
-        context['hotblogs'] = Blog.objects.order_by('views')[:5]
+        context['hotblogs'] = Blog.objects.order_by('-views')[:5]
         return context
 
 
