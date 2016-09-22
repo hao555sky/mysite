@@ -1,10 +1,55 @@
 {% extends 'base.html' %}
 
 {% load staticfiles %}
-3333
-{% block title %}11111{% endblock %}
 
 {% block content %}
-22222
-    {{ error }}
+    <div id="detail" class="col-lg-9 col-md-8">
+    {% if blog %}
+        <!-- the location-->
+            <ol class="breadcrumb">
+                <li><a href="#">Home /</li>
+                <li><a href="{{ object.get_absolute_url }}">{{ object.title }}</a></li>
+            </ol>
+        <div id="blog" class="well">
+
+            <div class="title">
+                <span>{{ blog.title }}</span>
+            </div>
+            <div class="tags">
+                <span class="tag">
+                    <span class="glyphicon glyphicon-comment" aria-hidden="true"></span>
+                    暂无
+                </span>
+                <span class="tag">
+                    <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>
+                    {{ blog.views }}
+                </span>
+                <span class="tag">
+                    <span class="glyphicon glyphicon-calendar" aria-hidden="true"></span>
+                    {{ blog.create_time }}
+                </span>
+                <span class="tag">
+                    <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
+                    {{ blog.author }}
+                </span>
+                {% for tag in blog.get_tags %}
+                    <span class="tag">
+                        <span class="label label-success">
+                            {{ tag }}
+                        </span>
+                    </span>
+                {% endfor %}
+            </div>
+            <div class="content">
+                {{ blog.content|safe }}
+            </div>
+        </div>
+        <!-- 多说评论框 start -->
+        <!-- 多说评论框 end -->
+        <!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+        <div class="ds-thread" data-thread-key="{{ blog.id }}" data-title="{{ blog.title }}" data-url="{{ blog.get_absolute_url }}"></div>
+        <script type="text/javascript" src="/static/js/duoshuo_comments.js"></script>
+        <!-- 多说公共JS代码 end -->
+    {% endif %}
+    </div>
 {% endblock %}
