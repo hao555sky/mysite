@@ -1,6 +1,5 @@
-from django.core.urlresolvers import reverse
+from django.db.models import Q
 from django.views import generic
-from django.views.generic.base import ContextMixin
 import logging
 
 from .models import Category, Blog
@@ -62,3 +61,12 @@ class BlogView(BaseMixIn, generic.DetailView):
         return context
 
 
+class SearchView(BaseMixIn):
+    template_name = 'blog/all.html'
+    model = Blog
+
+    def get_context_data(self, **kwargs):
+        context = super(SearchView, self).get_context_data(**kwargs)
+        key = self.request.GET.get('search')
+        context['bloglists'] = Blog.objects.filter(Q(title__icontains = key) | Q(tags__icontains = key))
+        return context

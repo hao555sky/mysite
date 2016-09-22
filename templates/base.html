@@ -37,15 +37,14 @@
               {% if categories %}
                   {% for category in categories %}
                       <li role="separator" class="divider"></li>
-                      <li><a href="#">{{ category.name }}</a></li>
+                      <li><a href="{% url 'blog:category' category.name %}">{{ category.name }}</a></li>
                   {% endfor %}
               {% endif %}
           </ul>
         </li>
       </ul>
         <ul class="nav navbar-nav navbar-right">
-            <li><a href="#">Sign Up</a></li>
-            <li><a href="#">Sing In</a></li>
+            <li><a href="#">About Me</a></li>
         </ul>
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->
@@ -57,12 +56,14 @@
         {% endblock %}
         <!-- SideBar Start-->
         <div id="sideBar" class="col-lg-3 col-md-4 hidden-xs">
-            <div class="input-group">
-                <input type="text" class="form-control" placeholder="Search for...">
+            <form action="{% url 'blog:search' %}" class="input-group">
+                {% csrf_token %}
+                <input type="text" name="search" class="form-control" placeholder="Search for...">
                 <span class="input-group-btn">
-                    <button class="btn btn-default" type="button">Go!</button>
+                    <button class="btn btn-default" type="submit">Go!</button>
                 </span>
-            </div><!-- /input-group -->
+            </form>
+            <!-- /input-group -->
             <!--标签云Start-->
             <div id="tagcloud">
                 <img class="tagcloud" src="{% static 'images/ubuntu2.jpg' %}">
