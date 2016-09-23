@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns="http://www.w3.org/1999/html">
 <head>
     <meta charset="UTF-8">
     {% load staticfiles %}
@@ -8,11 +8,13 @@
     <link type="text/css" rel="stylesheet" href="{% static 'bootstrap/css/bootstrap.min.css' %}">
     <link type="text/css" rel="stylesheet" href="{% static 'css/hao.css' %}">
     <script type="text/javascript" src="{% static 'bootstrap/js/bootstrap.min.js' %}"></script>
+    <link type="text/css" rel="stylesheet" href="{% static 'css/main.css' %}">
+    <script type="text/javascript" src="{% static 'js/Chart.js' %}"></script>
 </head>
 <body class="hao">
-<div class="haoHeader">
-    <div>hao 啦啦啦啦啦啦啦</div>
-</div>
+{#<div class="haoHeader">#}
+{#    <div>hao 啦啦啦啦啦啦啦</div>#}
+{#</div>#}
 <!-- navigator start-->
 <nav id="haoNav" class="navbar navbar-default">
   <div class="container">
@@ -28,10 +30,10 @@
     </div>
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-      <ul class="nav navbar-nav">
-        <li class="active"><a href="{% url 'blog:index' %}">首页 <span class="sr-only">(current)</span></a></li>
-        <li><a href="{% url 'blog:all' %}">全部文章</a></li>
-        <li class="dropdown">
+        <ul class="nav navbar-nav">
+            <li class="active"><a href="{% url 'blog:index' %}">首页 <span class="sr-only">(current)</span></a></li>
+            <li><a href="{% url 'blog:all' %}">全部文章</a></li>
+            <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">技术小报 <span class="caret"></span></a>
           <ul class="dropdown-menu">
               {% if categories %}
@@ -42,7 +44,8 @@
               {% endif %}
           </ul>
         </li>
-      </ul>
+            <li><a href="{% url 'blog:me' %}">关于本人</a></li>
+        </ul>
         <ul class="nav navbar-nav navbar-right">
             <li><a href="#">About Me</a></li>
         </ul>
@@ -54,6 +57,8 @@
     <div class="row">
         {% block content %}
         {% endblock %}
+
+        {% block sidebar %}
         <!-- SideBar Start-->
         <div id="sideBar" class="col-lg-3 col-md-4 hidden-xs">
             <form action="{% url 'blog:search' %}" class="input-group">
@@ -84,10 +89,12 @@
             <!-- 多说最新评论 start -->
             <!-- 多说最新评论 end -->
             <!-- 多说公共JS代码 start (一个网页只需插入一次) -->
-            <div class="ds-recent-comments" data-num-items="5" data-show-avatars="1" data-show-time="1" data-show-title="1" data-show-admin="1" data-excerpt-length="70"></div>
-            <script type="text/javascript" src="/static/js/duoshuo_hotestcomments.js"></script>
+            <div class="ds-recent-comments" data-num-items="5" data-show-avatars="1" data-show-time="1" data-show-title="1" data-show-admin="1" data-excerpt-length="70">
+                <script type="text/javascript" src="/static/js/duoshuo_hotestcomments.js"></script>
+            </div>
             <!-- 多说公共JS代码 end -->
         </div><!-- /.col-lg-6 -->
+        {% endblock %}
     </div><!-- /.row -->
 </div>
 </body>

@@ -116,3 +116,25 @@
 #tags{
     float: right;
 }
+
+#me{
+    font:italic 20px Sans-serif;
+}
+
+#me .head{
+    position: relative;
+    left:10%;
+}
+#me .basic{
+    position: relative;
+    left: 45%;
+}
+
+/*#skillswrap {*/
+	/*padding-top: 20px;*/
+	/*color: white;*/
+/*}*/
+
+/*#skillswrap h5, p {*/
+	/*color: black;*/
+/*}*/

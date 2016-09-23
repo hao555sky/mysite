@@ -70,3 +70,8 @@ class SearchView(BaseMixIn):
         key = self.request.GET.get('search')
         context['bloglists'] = Blog.objects.filter(Q(title__icontains = key) | Q(tags__icontains = key))
         return context
+
+
+class MeView(BaseMixIn):
+    template_name = 'blog/me.html'
+    model = Blog
